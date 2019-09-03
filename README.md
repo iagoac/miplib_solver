@@ -3,5 +3,6 @@ A very simple implementation of a solver for the MIPLIB instances
 
 
 
-example
+example:
+
 ./cplex -input ../instances/benchmark/irish-electricity.mps.gz -switch 1 -time 600
