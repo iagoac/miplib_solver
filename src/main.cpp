@@ -45,9 +45,13 @@ int main(int argc, char* const* argv) {
   std::cout << args.get<int>("-switch") << ",";
   std::cout << solver.num_var << ",";
   std::cout << solver.num_constraints << ",";
-  std::cout << solver._cplex.getBestObjValue() << ",";
-  std::cout << solver._cplex.getObjValue() << ",";
-  std::cout << solver._cplex.getMIPRelativeGap()*100 << ",";
+  if (solver._cplex.getStatus() != IloAlgorithm::Infeasible) {
+    std::cout << solver._cplex.getBestObjValue() << ",";
+    std::cout << solver._cplex.getObjValue() << ",";
+    std::cout << solver._cplex.getMIPRelativeGap()*100 << ",";
+  } else {
+    std::cout << "0,0,0,";
+  }
   std::cout << solver._cplex.getTime() << ",";
   std::cout << solver._cplex.getStatus() << std::endl;
 
